@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User{ 
+  id_user String @id @default(uuid()) 
+  name String
+  email String
+  password String
+  phone String? // ? significa que não é obrigatório.
+  user_group Int @default(0)
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+  
+  posts Post[] //cria relacionamento de um para muitos (1 -- *)
+  @@map("users") //nome da tabela
+}
+
+model Post{
+  id String @id @default(uuid())
+  id_user String
+  name String  //@default("alan")   cria um nome que vem padrão no campo
+  conteudo String @db.Text
+  //campo "author" é do tipo "User".   fields: id_user (campo da tabela Post). Reference: id_user (campo da tabela User).
+  author User @relation(fields: [id_user], references: [id_user])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("posts")
+}
+
