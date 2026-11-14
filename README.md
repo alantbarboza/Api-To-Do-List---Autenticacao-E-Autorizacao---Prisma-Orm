@@ -1,4 +1,4 @@
-# Configuração de Variáveis de Ambiente - Projeto prático do curso "O Novo Programador".
+# Configuração de Variáveis de Ambiente
 
 Adicione as variáveis de ambiente abaixo no seu arquivo `.env` para configurar a aplicação:
 
